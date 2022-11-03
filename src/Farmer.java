@@ -1,88 +1,52 @@
-import java.util.ArrayList;
+import java.util.Scanner;
 
-/**
- * Description of class
- *
- * @author
- */
 public class Farmer {
     private String name;
-    private int exp, level;
-    private FarmerLevel farmerLevel;
     private double objectCoins;
-    private ArrayList<Seed> availableSeeds;
+    private Turnip crop;
     private int plantedSeeds, harvestedCrops;
-    private Tool plow, wateringCan, fertilizer, pickaxe, shovel;
+    private Tool plow, wateringCan, fertilizer;
 
-    /**
-     *
-     */
+    Scanner sc = new Scanner(System.in);
+
     public Farmer() {
-        this.name = "Jack"; // Default name
-        this.availableSeeds = new ArrayList<>();
+        this.name = "Jack";
+        this.objectCoins = 100;
     }
 
-    /**
-     *
-     * @param name
-     */
     public Farmer(String name) {
         this.name = name;
-        this.availableSeeds = new ArrayList<>();
+        this.objectCoins = 100;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getName() {
         return this.name;
     }
 
-    /**
-     *
-     * @return
-     */
-    public int getExp() {
-        return this.exp;
+    public double getObjectCoins() {
+        return this.objectCoins;
     }
 
-    /**
-     *
-     * @param exp
-     */
-    public void addExp(int exp) {
+    public void buySeed(Turnip crop) {
 
+        System.out.println("\n\nThis is the Seed Store!");
+
+        System.out.println("\nName\tCost\tHarvest Time");
+        System.out.println(crop.getName() + "\t" + crop.getCost() + "\t\t" + crop.getHarvestTime());
+
+        System.out.print("\nPress [B] to buy TURNIPS: ");
+
+        char buy = sc.next().charAt(0);
+
+        this.objectCoins = this.objectCoins - crop.getCost();
+
+        System.out.println("\nYou currently have " + getObjectCoins() + " Objectcoins.");
     }
 
-    /**
-     *
-     */
-    public void addCoins() {
-
-    }
-
-    /**
-     *
-     * @param name
-     * @param availableSeeds
-     */
-    public void buySeeds(String name, ArrayList<Seed> availableSeeds) {
+    public void plantSeed(Turnip Seed) {
 
     }
 
-    /**
-     *
-     * @param name
-     */
-    public void plantCrop(String name) {
-
-    }
-
-    /**
-     *
-     * @param currentTile
-     */
     public void harvestCrop(Tile currentTile) {
 
     }

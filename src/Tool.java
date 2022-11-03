@@ -1,27 +1,10 @@
-/**
- * Description of class
- *
- * @author
- */
 public class Tool {
     private double cost;
-    private double expGain;
 
-    /**
-     *
-     *
-     * @param cost
-     * @param expGain
-     */
-    public Tool(double cost, double expGain) {
-
+    public Tool(double cost) {
+        this.cost = cost;
     }
 
-    /**
-     *
-     *
-     * @return
-     */
     public boolean use() {
 
         return true;

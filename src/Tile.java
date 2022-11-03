@@ -1,33 +1,30 @@
-/**
- * Description of class
- *
- * @author
- */
 public class Tile {
-    private Crop crop;
+    private Turnip crop;
+    private int dayCount;
     private boolean isPlowed;
-    private TileStatus availability;
+    private boolean status;
 
-    /**
-     *
-     */
     public Tile() {
+        this.isPlowed = false;
+    }
+
+    public boolean isWithered(int dayCount, Turnip crop) {
+        return true;
+    }
+
+    public boolean isHarvestable(int dayCount, Turnip crop) {
+        return true;
+    }
+
+    public void isPlowed(boolean status) {
 
     }
 
-    /**
-     *
-     * @param status
-     */
-    public void setPlowed(boolean status) {
-
+    public void setPlowed(boolean newStatus) {
+        this.isPlowed = newStatus;
     }
 
-    /**
-     *
-     * @param reason
-     */
-    public void updateStatus(String reason) {
-
+    public int returnCrop(Turnip crop) {
+        return 5;
     }
 }
