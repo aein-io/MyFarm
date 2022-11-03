@@ -30,17 +30,22 @@ public class Farmer {
     public void buySeed(Turnip crop) {
 
         System.out.println("\n\nThis is the Seed Store!");
+        System.out.println("Looks like they’re still stocking up for the new season.");
+        System.out.println("Luckily, they still have some TURNIPS.");
 
         System.out.println("\nName\tCost\tHarvest Time");
         System.out.println(crop.getName() + "\t" + crop.getCost() + "\t\t" + crop.getHarvestTime());
 
-        System.out.print("\nPress [B] to buy TURNIPS: ");
+        System.out.println("\nWhy don't you buy some?");
+
+        System.out.print("\nPress [B] to BUY or [X] to RETURN: ");
 
         char buy = sc.next().charAt(0);
 
         this.objectCoins = this.objectCoins - crop.getCost();
 
-        System.out.println("\nYou currently have " + getObjectCoins() + " Objectcoins.");
+        System.out.println("\nThank you for your purchase!");
+        System.out.println("You currently have " + getObjectCoins() + " Objectcoins.");
     }
 
     public void plantSeed(Turnip Seed) {
