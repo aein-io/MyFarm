@@ -23,8 +23,12 @@ public class Driver {
 
         switch (input) {
             case 1 -> System.out.println(1);
-            case 2 -> farmer.buySeed(crop);
+            case 2 -> {
+                System.out.print("\033[H\033[2J");
+                farmer.buySeed(crop); }
             case 3 -> System.out.println(3);
         }
+
+        sc.close();
     }
 }

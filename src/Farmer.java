@@ -29,7 +29,7 @@ public class Farmer {
 
     public void buySeed(Turnip crop) {
 
-        System.out.println("\n\nThis is the Seed Store!");
+        System.out.println("\nThis is the Seed Store!");
         System.out.println("Looks like they’re still stocking up for the new season.");
         System.out.println("Luckily, they still have some TURNIPS.");
 
