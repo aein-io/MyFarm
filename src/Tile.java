@@ -1,23 +1,38 @@
 public class Tile {
+
     private Turnip crop;
     private boolean isPlowed;
     private boolean isWithered;
     private boolean isHarvestable;
+    private boolean isOccupied;
     private int dayCount;
-
-    public Tile(int dayCount) {
-        this.crop = null;
-        this.isPlowed = false;
-        this.isWithered = false;
-        this.isHarvestable = false;
-        this.dayCount = dayCount;
-    }
 
     public Tile() {
         this.crop = null;
         this.isPlowed = false;
         this.isWithered = false;
         this.isHarvestable = false;
+        this.isOccupied = false;
+        this.dayCount = 1;
+    }
+
+    public String display() {
+
+        String tile = "⧈";
+
+        if(this.isPlowed)
+            tile = "▧";
+
+        if(this.isPlowed && this.crop != null) {
+            if(isHarvestable())
+                tile = "♧";
+            else if(isWithered())
+                tile = "⊠";
+            else
+                tile = "⊡";
+        }
+
+        return tile;
     }
 
     public int getDayCount() {
@@ -27,45 +42,39 @@ public class Tile {
     public int advanceDay() {
         return this.dayCount = this.dayCount + 1;
     }
-    
-    public String display() {
-        
-        String tile = "⧈";
 
-        if(this.isPlowed)
-            tile = "▧";
-
-        if(this.isPlowed && this.crop != null) {
-            if(setHarvestable())
-                tile = "♧";
-            else if(setWithered())
-                tile = "⊠";
-            else
-                tile = "⊡"; 
-        }
-
-        return tile;
+    public void setPlowed() {
+        this.isPlowed = true;
     }
-    
+
+    public void setOccupied() {
+        this.isOccupied = true;
+    }
+
     public Turnip getCrop() {
+
         return crop;
     }
-    
+
     public void setCrop(Turnip crop) {
         this.crop = crop;
     }
-    
-    public boolean setPlowed() {
+
+    public boolean isPlowed() {
         return isPlowed = true;
     }
-    
-    public boolean setWithered() {
-        return isWithered = true;
+
+    public boolean isOccupied() {
+        return isOccupied = true;
     }
 
-    public boolean setHarvestable() {
+    public boolean isHarvestable() {
         return isHarvestable = true;
     }
 
-    
+    public boolean isWithered() {
+        return isWithered = true;
+    }
+
 }
+

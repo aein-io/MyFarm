@@ -5,11 +5,7 @@ public class Plow {
         this.cost = 0;
     }
 
-    public boolean usePlow(Tile tile) {
-        
-        // Check if existing plant
-        // Check if plowed
-        
-        return tile.setPlowed();
+    public void plowTile(Tile tile) {
+        tile.setPlowed();
     }
 }

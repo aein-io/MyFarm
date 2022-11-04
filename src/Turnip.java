@@ -3,7 +3,7 @@ public class Turnip {
     private double cost, basePrice;
     private int timesWatered, timesFertilized;
     private int waterNeeds, fertilizerNeeds;
-    private int harvestTime, harvestYieldMin, harvestYieldMax;
+    private int harvestTime, harvestMin, harvestMax;
 
     public Turnip() {
         this.name = "Turnip";
@@ -15,8 +15,8 @@ public class Turnip {
         this.waterNeeds = 1;
         this.fertilizerNeeds = 0;
         this.harvestTime = 2;
-        this.harvestYieldMin = 1;
-        this.harvestYieldMax = 2;
+        this.harvestMin = 1;
+        this.harvestMax = 2;
     }
 
     public String getName() {
@@ -55,12 +55,24 @@ public class Turnip {
         return this.harvestTime;
     }
 
-    public int getHarvestYieldMin() {
-        return this.harvestYieldMin;
+    public int getHarvestMin() {
+        return this.harvestMin;
     }
 
-    public int getHarvestYieldMax() {
-        return this.harvestYieldMax;
+    public int getHarvestMax() {
+        return this.harvestMax;
+    }
+
+    public int getProduce() {
+        return (int) (Math.random() * (getHarvestMax() - getHarvestMin() + 1) + getHarvestMin());
+    }
+
+    public int addWater() {
+        return getTimesWatered() + 1;
+    }
+
+    public int addFertilizer() {
+        return getTimesFertilized() + 1;
     }
 
     public void growTurnip() {
@@ -69,4 +81,5 @@ public class Turnip {
         // Wither or harvest
     }
 }
+
 
