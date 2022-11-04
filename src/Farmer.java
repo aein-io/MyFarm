@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.*;
 
 public class Farmer {
 
@@ -9,6 +10,8 @@ public class Farmer {
     private WateringCan wateringCan;
     private Plow plow;
     private Fertilizer fertilizer;
+    
+    Scanner sc = new Scanner(System.in);
 
     public Farmer() {
         this.name = "Jack";
@@ -43,7 +46,7 @@ public class Farmer {
 
     public ArrayList<Turnip> getSeedArray() {
 
-        return seedArray;
+        return this.seedArray;
     }
 
     public void buySeed(Turnip seed) {
@@ -54,7 +57,19 @@ public class Farmer {
 
     public void plantSeed(Turnip seed, Tile tile) {
 
-        tile.setCrop(new Turnip());
+        if(tile.isPlowed()) {
+            buySeed(seed);
+            tile.setCrop(new Turnip());
+            System.out.println("\nYou have planted a " + seed.getName() + "!");
+            System.out.print("\nPress <ENTER> to continue ");
+            sc.nextLine();
+        }
+
+        else {
+            System.out.println("\nThis tile has not been plowed!");
+            System.out.print("\nPress <ENTER> to continue ");
+            sc.nextLine();
+        }
     }
 
     public void harvestCrop(Tile tile) {
@@ -78,16 +93,30 @@ public class Farmer {
     }
 
     public void useWateringCan(Tile tile) {
-
+        
+        if(tile.getCrop() != null) {
+            this.objectCoins -= this.wateringCan.getCost();
+            this.wateringCan.waterCrop(tile);
+            System.out.println("\nYou have watered the ");
+            System.out.print("\nPress <ENTER> to continue ");
+            sc.nextLine();
+        }
     }
 
     public void useFertilizer(Tile tile) {
-
+        this.objectCoins -= this.fertilizer.getCost();
+        this.fertilizer.fertilizeCrop(tile);
     }
 
     public void usePlow(Tile tile) {
         if(!tile.isPlowed())
-            plow.plowTile(tile);
+            this.plow.plowTile(tile);
+
+        else {
+            System.out.println("\nThis tile has already been plowed!");
+            System.out.print("\nPress <ENTER> to continue ");
+            sc.nextLine();
+        }
     }
 }
 

@@ -16,15 +16,13 @@ public class Driver {
 
             // Start
             System.out.print("\033[H\033[2J");
-            System.out.println("\nDAY " + tile.getDayCount());
+            System.out.println("DAY " + tile.getDayCount());
 
             System.out.println("\nWelcome, Farmer " + farmer.getName() + ".");
             System.out.println("You currently have " + farmer.getObjectCoins() + " Objectcoins.\n");
 
             // Displays Farm
             System.out.println(tile.display());
-
-            // Gives feedback
 
             System.out.println("\nWhat would you like to do?");
             System.out.println("[1] Sleep\t [4] Water");
@@ -44,6 +42,18 @@ public class Driver {
                     break;
                 case 2 :
                     farmer.usePlow(tile);
+                    break;
+                case 3 :
+                    farmer.plantSeed(seed, tile);
+                    break;
+                case 4 :
+                    farmer.useWateringCan(tile);
+                    break;
+                case 5 :
+                    farmer.useFertilizer(tile);
+                    break;
+                case 6 :
+                    farmer.harvestCrop(tile);
                     break;
             }
 

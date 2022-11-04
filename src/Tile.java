@@ -20,16 +20,17 @@ public class Tile {
 
         String tile = "⧈";
 
-        if(this.isPlowed)
+        if(this.isPlowed) {
             tile = "▧";
 
-        if(this.isPlowed && this.crop != null) {
-            if(isHarvestable())
-                tile = "♧";
-            else if(isWithered())
-                tile = "⊠";
-            else
-                tile = "⊡";
+            if(this.getCrop() != null) {
+                if(this.isHarvestable())
+                    tile = "♧";
+                else if(this.isWithered())
+                    tile = "⊠";
+                else
+                    tile = "⊡";
+            }
         }
 
         return tile;
@@ -61,19 +62,19 @@ public class Tile {
     }
 
     public boolean isPlowed() {
-        return isPlowed = true;
+        return isPlowed;
     }
 
     public boolean isOccupied() {
-        return isOccupied = true;
+        return isOccupied;
     }
 
     public boolean isHarvestable() {
-        return isHarvestable = true;
+        return isHarvestable;
     }
 
     public boolean isWithered() {
-        return isWithered = true;
+        return isWithered;
     }
 
 }

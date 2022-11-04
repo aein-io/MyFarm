@@ -2,7 +2,11 @@ public class Fertilizer {
     private double cost;
 
     public Fertilizer() {
-        cost = 10;
+        this.cost = 10;
+    }
+
+    public double getCost() {
+        return this.cost;
     }
 
     public void fertilizeCrop(Tile tile) {
