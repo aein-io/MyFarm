@@ -1,9 +1,7 @@
-
-
 public class Plow {
     private double cost;
 
-    public Plow(double cost) {
+    public Plow() {
         this.cost = 0;
     }
 

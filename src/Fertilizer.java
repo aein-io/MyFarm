@@ -1,9 +1,7 @@
-
-
 public class Fertilizer {
     private double cost;
 
-    public Fertilizer(double cost) {
+    public Fertilizer() {
         this.cost = 10;
     }
 

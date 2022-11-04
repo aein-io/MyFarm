@@ -1,9 +1,7 @@
-
-
 public class WateringCan {
     private double cost;
 
-    public WateringCan(double cost) {
+    public WateringCan() {
         this.cost = 0;
     }
 

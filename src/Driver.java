@@ -17,7 +17,7 @@ public class Driver {
         Scanner sc = new Scanner(System.in);
 
         Farmer farmer = new Farmer();
-        Tile tile = new Tile();
+        Tile tile = new Tile(1);
         Turnip crop = new Turnip();
 
         boolean exit = false;

@@ -1,8 +1,10 @@
+import java.util.ArrayList;
+
 public class Farmer {
     private String name;
     private double objectCoins;
 
-    private Turnip crop;
+    private ArrayList<Turnip> turnipSeeds;
     private Plow plow;
     private WateringCan wateringCan;
     private Fertilizer fertilizer;
@@ -10,11 +12,21 @@ public class Farmer {
     public Farmer() {
         this.name = "Jack";
         this.objectCoins = 100;
+
+        this.turnipSeeds = new ArrayList<Turnip>();
+        this.plow = new Plow();
+        this.wateringCan = new WateringCan();
+        this.fertilizer = new Fertilizer();
     }
 
     public Farmer(String name) {
         this.name = name;
         this.objectCoins = 100;
+
+        this.turnipSeeds = new ArrayList<Turnip>();
+        this.plow = new Plow();
+        this.wateringCan = new WateringCan();
+        this.fertilizer = new Fertilizer();
     }
 
     public String getName() {
@@ -32,7 +44,7 @@ public class Farmer {
     }
     
     public void plant(Tile tile) {        
-        tile.setCrop(crop);
+        tile.setCrop(new Turnip());
     }
     
     public void buy(Turnip crop) {
@@ -49,6 +61,6 @@ public class Farmer {
 
     public void harvest(Tile tile) {
         // Harvest crop
-        // Reset tile
+        new Tile(); // Resets tile?
     }
 }
