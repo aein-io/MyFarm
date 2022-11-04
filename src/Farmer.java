@@ -27,14 +27,30 @@ public class Farmer {
         return this.objectCoins;
     }
 
-    public void buySeed(Turnip crop) {
+    public void plow(Tile tile) {
+        if (!tile.plowed()) {
+            plow.use(tile);
+        }
+    }
+    
+    public void plant(Tile tile) {
+        if(tile.plowed()) {
+            buy(crop);
+            System.out.println("Seed has been planted!");
+        }
 
+        else
+            System.out.println("There is no plowed land.");
+    }
+
+    public void buy(Turnip crop) {
+        System.out.print("\033[H\033[2J");
         System.out.println("\nThis is the Seed Store!");
         System.out.println("Looks like they’re still stocking up for the new season.");
         System.out.println("Luckily, they still have some TURNIPS.");
 
         System.out.println("\nName\tCost\tHarvest Time");
-        System.out.println(crop.getName() + "\t" + crop.getCost() + "\t\t" + crop.getHarvestTime());
+        System.out.println(crop.getName() + "\t" + crop.getCost() + "\t" + crop.getHarvestTime());
 
         System.out.println("\nWhy don't you buy some?");
 
@@ -47,12 +63,18 @@ public class Farmer {
         System.out.println("\nThank you for your purchase!");
         System.out.println("You currently have " + getObjectCoins() + " Objectcoins.");
     }
-
-    public void plantSeed(Turnip Seed) {
+    
+    public void water(Turnip crop) {
 
     }
 
-    public void harvestCrop(Tile currentTile) {
+    public void fertilize(Turnip crop) {
 
+    }
+
+    public void harvest(Tile tile) {
+        if(tile.harvestable()) {
+            // Harvest crop
+        }
     }
 }

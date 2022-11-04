@@ -2,11 +2,15 @@ public class Tool {
     private double cost;
 
     public Tool(double cost) {
-        this.cost = cost;
+        this.cost = 0;
     }
 
-    public boolean use() {
-
-        return true;
+    // Plow Tile
+    public boolean use(Tile tile) {
+        
+        if(!tile.plowed())
+            return tile.plowed();
+        
+        return !tile.plowed();
     }
 }
