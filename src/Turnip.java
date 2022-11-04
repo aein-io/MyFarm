@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Turnip {
     private String name, type;
     private double cost, basePrice;
@@ -88,49 +86,6 @@ public class Turnip {
 
     public int addFertilizer() {
         return this.timesFertilized += 1;
-    }
-
-    public void growCrop(Turnip crop) {
-        
-        Scanner sc = new Scanner(System.in);
-        
-        // No crop is planted
-        if (tile.getCrop() == null) {
-            System.out.println("\n< Daily Progress >");
-            System.out.println("There are no seeds planted.");
-            
-            System.out.print("\nPress <ENTER> to continue ");
-            sc.nextLine();
-        }
-        
-        // Crop progress
-        else {
-            System.out.println("\n< Daily Progress >");
-            System.out.println("Times Watered: " + getTimesWatered());
-            System.out.println("Times Fertilized: " + getTimesFertilized());
-
-            // Crop is harvestable
-            if (getHarvestTime() == tile.getDayCount() &&  (getTimesWatered() >= getWaterNeeds() || getTimesFertilized() >= getFertilizerNeeds())) {
-                tile.isHarvestable();
-                System.out.println("\n\nGood job! Your crop is ready for harvesting!");
-                System.out.print("\nPress <ENTER> to continue ");
-                sc.nextLine();
-            }
-
-            // Crop has withered
-            else if (getHarvestTime() == tile.getDayCount() &&  (getTimesWatered() < getWaterNeeds() || getTimesFertilized() < getFertilizerNeeds())) {
-                tile.isWithered();
-                System.out.println("\n\nOh no! Your crop has withered.");
-                System.out.print("\nPress <ENTER> to continue ");
-                sc.nextLine();
-            }
-
-            // Crop is still growing
-            else {
-                System.out.print("\nPress <ENTER> to continue ");
-                sc.nextLine();
-            }
-        }
     }
 }
 
