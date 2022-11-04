@@ -3,6 +3,7 @@ public class Turnip {
     private double cost, basePrice;
     private int timesWatered, timesFertilized;
     private int waterNeeds, fertilizerNeeds;
+    private int waterBonus, fertilizerBonus;
     private int harvestTime, harvestMin, harvestMax;
 
     public Turnip() {
@@ -68,11 +69,11 @@ public class Turnip {
     }
 
     public int addWater() {
-        return getTimesWatered() + 1;
+        return this.timesWatered += 1;
     }
 
     public int addFertilizer() {
-        return getTimesFertilized() + 1;
+        return this.timesFertilized += 1;
     }
 
     public void growTurnip() {

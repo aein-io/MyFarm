@@ -57,7 +57,7 @@ public class Farmer {
 
     public void plantSeed(Turnip seed, Tile tile) {
 
-        if(tile.isPlowed()) {
+        if(tile.isPlowed() && tile.getCrop() == null) {
             buySeed(seed);
             tile.setCrop(new Turnip());
             System.out.println("\nYou have planted a " + seed.getName() + "!");
@@ -66,7 +66,7 @@ public class Farmer {
         }
 
         else {
-            System.out.println("\nThis tile has not been plowed!");
+            System.out.println("\nThis tile has not been plowed OR already has a seed!");
             System.out.print("\nPress <ENTER> to continue ");
             sc.nextLine();
         }
@@ -97,15 +97,44 @@ public class Farmer {
         if(tile.getCrop() != null) {
             this.objectCoins -= this.wateringCan.getCost();
             this.wateringCan.waterCrop(tile);
-            System.out.println("\nYou have watered the ");
+            System.out.println("\nYou have watered the " + tile.getCrop().getName() + 
+                " this many times: " + tile.getCrop().getTimesWatered());
+            
+            int left = tile.getCrop().getWaterNeeds() - tile.getCrop().getTimesWatered();
+            System.out.println("Remaining water times required: " + left);
+
+            System.out.print("\nPress <ENTER> to continue ");
+            sc.nextLine();
+        }
+
+        else {
+            System.out.println("\nThis tile has no crop to water!");
             System.out.print("\nPress <ENTER> to continue ");
             sc.nextLine();
         }
     }
 
     public void useFertilizer(Tile tile) {
-        this.objectCoins -= this.fertilizer.getCost();
-        this.fertilizer.fertilizeCrop(tile);
+        
+        if(tile.getCrop() != null) {
+            this.objectCoins -= this.fertilizer.getCost();
+            this.fertilizer.fertilizeCrop(tile);
+            System.out.println("\nYou have fertilized the " + tile.getCrop().getName() + 
+                " this many times: " + tile.getCrop().getTimesFertilized());
+            
+            int left = tile.getCrop().getFertilizerNeeds() - tile.getCrop().getTimesFertilized();
+            System.out.println("Remaining fertilize times required: " + left);
+
+            System.out.print("\nPress <ENTER> to continue ");
+            sc.nextLine();
+        }
+
+        else {
+            System.out.println("\nThis tile has no crop to fertilize!");
+            System.out.print("\nPress <ENTER> to continue ");
+            sc.nextLine();
+        }
+
     }
 
     public void usePlow(Tile tile) {
