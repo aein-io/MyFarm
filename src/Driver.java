@@ -8,7 +8,7 @@ public class Driver {
 
         Farmer farmer = new Farmer();
         Tile tile = new Tile();
-        Turnip seed = new Turnip();
+        Turnip crop = new Turnip();
 
         boolean exit = false;
 
@@ -24,9 +24,16 @@ public class Driver {
             // Displays Farm
             System.out.println(tile.display());
 
+            // Displays Information (Might be better to have default values?)
+            if (tile.getCrop() != null) {
+                System.out.println("\nName: " + crop.getName() + "\t\tWater Needs: " + crop.getWaterNeeds());
+                System.out.println("Type: " + crop.getType() + "\t\tFertilizer Needs: " + crop.getFertilizerNeeds());
+            }
+            
+            // Tasks
             System.out.println("\nWhat would you like to do?");
             System.out.println("[1] Sleep\t [4] Water");
-            System.out.println("[2] Plow\t [5] Fertilize");
+            System.out.println("[2] Plow\t [5] Fertilize"); 
             System.out.println("[3] Plant\t [6] Harvest");
             System.out.println("\n[0] Exit");
             System.out.print("\nInput: ");
@@ -38,13 +45,13 @@ public class Driver {
                     exit = true;
                     break;
                 case 1 :
-                    tile.advanceDay();
+                    tile.growCrop();
                     break;
                 case 2 :
                     farmer.usePlow(tile);
                     break;
                 case 3 :
-                    farmer.plantSeed(seed, tile);
+                    farmer.plantSeed(crop, tile);
                     break;
                 case 4 :
                     farmer.useWateringCan(tile);

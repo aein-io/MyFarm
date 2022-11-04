@@ -1,10 +1,11 @@
+import java.util.*;
+
 public class Tile {
 
     private Turnip crop;
     private boolean isPlowed;
     private boolean isWithered;
     private boolean isHarvestable;
-    private boolean isOccupied;
     private int dayCount;
 
     public Tile() {
@@ -12,13 +13,12 @@ public class Tile {
         this.isPlowed = false;
         this.isWithered = false;
         this.isHarvestable = false;
-        this.isOccupied = false;
         this.dayCount = 1;
     }
 
     public String display() {
-
-        String tile = "⧈";
+        
+        String tile = "□";
 
         if(this.isPlowed) {
             tile = "▧";
@@ -28,8 +28,10 @@ public class Tile {
                     tile = "♧";
                 else if(this.isWithered())
                     tile = "⊠";
+                else if(this.getCrop().getTimesWatered() >= 1)
+                    tile = "⁕";
                 else
-                    tile = "⊡";
+                    tile = "🝕";
             }
         }
 
@@ -40,16 +42,62 @@ public class Tile {
         return this.dayCount;
     }
 
-    public int advanceDay() {
-        return this.dayCount = this.dayCount + 1;
+    public void growCrop() {
+        
+        Scanner sc = new Scanner(System.in);
+        
+        this.dayCount = this.dayCount + 1;
+        
+        // No crop is planted
+        if (getCrop() == null) {
+            System.out.println("\n< Daily Progress >");
+            System.out.println("There are no seeds planted.");
+            
+            System.out.print("\nPress <ENTER> to continue ");
+            sc.nextLine();
+        }
+        
+        // Crop progress
+        else {
+            System.out.println("\n< Daily Progress >");
+            System.out.println("Times Watered: " + getCrop().getTimesWatered());
+            System.out.println("Times Fertilized: " + getCrop().getTimesFertilized());
+            System.out.println("Crops Harvested: " + getCrop().getProduced());
+
+            // Crop is harvestable
+            if (getCrop().getHarvestTime() == getDayCount() &&  (getCrop().getTimesWatered() >= getCrop().getWaterNeeds() || getCrop().getTimesFertilized() >= getCrop().getFertilizerNeeds())) {
+                setHarvestable();
+                System.out.println("\nGood job! Your crop is ready for harvesting!");
+                System.out.print("\nPress <ENTER> to continue ");
+                sc.nextLine();
+            }
+
+            // Crop has withered
+            else if (getCrop().getHarvestTime() == getDayCount() &&  (getCrop().getTimesWatered() < getCrop().getWaterNeeds() || getCrop().getTimesFertilized() < getCrop().getFertilizerNeeds())) {
+                setWithered();
+                System.out.println("\nOh no! Your crop has withered.");
+                System.out.print("\nPress <ENTER> to continue ");
+                sc.nextLine();
+            }
+
+            // Crop is still growing
+            else {
+                System.out.print("\nPress <ENTER> to continue ");
+                sc.nextLine();
+            }
+        }
     }
 
     public void setPlowed() {
         this.isPlowed = true;
     }
 
-    public void setOccupied() {
-        this.isOccupied = true;
+    public void setHarvestable() {
+        this.isHarvestable = true;
+    }
+
+    public void setWithered() {
+        this.isWithered= true;
     }
 
     public Turnip getCrop() {
@@ -63,10 +111,6 @@ public class Tile {
 
     public boolean isPlowed() {
         return isPlowed;
-    }
-
-    public boolean isOccupied() {
-        return isOccupied;
     }
 
     public boolean isHarvestable() {
