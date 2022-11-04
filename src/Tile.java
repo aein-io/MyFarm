@@ -5,21 +5,26 @@ public class Tile {
     private boolean isHarvestable;
     private int dayCount;
 
+    public Tile(int dayCount) {
+        this.crop = null;
+        this.isPlowed = false;
+        this.isWithered = false;
+        this.isHarvestable = false;
+        this.dayCount = dayCount;
+    }
+
     public Tile() {
         this.crop = null;
         this.isPlowed = false;
         this.isWithered = false;
         this.isHarvestable = false;
-        this.dayCount = 1;
     }
 
     public int getDayCount() {
-    
         return this.dayCount;
     }
 
     public int advanceDay() {
-        
         return this.dayCount = this.dayCount + 1;
     }
     
@@ -31,9 +36,9 @@ public class Tile {
             tile = "▧";
 
         if(this.crop != null) {
-            if(harvestable())
+            if(setHarvestable())
                 tile = "♧";
-            else if(withered())
+            else if(setWithered())
                 tile = "⊠";
             else
                 tile = "⊡"; 
@@ -41,19 +46,24 @@ public class Tile {
 
         return tile;
     }
-
-    public boolean plowed() {
-
+    
+    public Turnip getCrop() {
+        return crop;
+    }
+    
+    public void setCrop(Turnip crop) {
+        this.crop = crop;
+    }
+    
+    public boolean setPlowed() {
         return isPlowed = true;
     }
     
-    public boolean withered() {
-        
+    public boolean setWithered() {
         return isWithered = true;
     }
 
-    public boolean harvestable() {
-        
+    public boolean setHarvestable() {
         return isHarvestable = true;
     }
 

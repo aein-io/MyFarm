@@ -63,13 +63,10 @@ public class Turnip {
         return this.harvestYieldMax;
     }
 
-    public void setTimesWatered() {
-
+    public void growTurnip() {
+        // Check if water needs are met
+        // Check if fertilizer needs are met
+        // Wither or harvest
     }
-
-    public void setTimesFertilized() {
-
-    }
-
 }
 
