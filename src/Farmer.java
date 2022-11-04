@@ -1,7 +1,6 @@
 public class Farmer {
     private String name;
     private double objectCoins;
-    private int plantedSeeds, harvestedCrops;
 
     private Turnip crop;
     private Plow plow;
@@ -32,10 +31,8 @@ public class Farmer {
         }
     }
     
-    public void plant(Tile tile) {
-        if(tile.setPlowed()) {
-            tile.setCrop(crop);
-        }
+    public void plant(Tile tile) {        
+        tile.setCrop(crop);
     }
     
     public void buy(Turnip crop) {
@@ -52,6 +49,6 @@ public class Farmer {
 
     public void harvest(Tile tile) {
         // Harvest crop
-        new Tile(); // Resets tile?
+        // Reset tile
     }
 }

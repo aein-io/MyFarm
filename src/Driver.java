@@ -7,7 +7,7 @@ public class Driver {
         
         // Put an array for Seeds here 
         System.out.print("\033[H\033[2J");
-        System.out.println("\n\n< The Seed Store >");
+        System.out.println("\n< The Seed Store >");
         System.out.println("\nName\tCost\tHarvest Time");
         System.out.println(crop.getName() + "\t" + crop.getCost() + "\t" + crop.getHarvestTime());
     }
@@ -17,7 +17,7 @@ public class Driver {
         Scanner sc = new Scanner(System.in);
 
         Farmer farmer = new Farmer();
-        Tile tile = new Tile(1);
+        Tile tile = new Tile();
         Turnip crop = new Turnip();
 
         boolean exit = false;
@@ -59,6 +59,7 @@ public class Driver {
                     seedStore();
                     System.out.print("\nPress [B] to buy TURNIPS: ");
                     char store = sc.next().charAt(0);
+                    farmer.buy(crop);
                     farmer.plant(tile);
                     break;
             }

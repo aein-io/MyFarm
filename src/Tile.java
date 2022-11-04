@@ -5,19 +5,12 @@ public class Tile {
     private boolean isHarvestable;
     private int dayCount;
 
-    public Tile(int dayCount) {
-        this.crop = null;
-        this.isPlowed = false;
-        this.isWithered = false;
-        this.isHarvestable = false;
-        this.dayCount = dayCount;
-    }
-
     public Tile() {
         this.crop = null;
         this.isPlowed = false;
         this.isWithered = false;
         this.isHarvestable = false;
+        this.dayCount = 1;
     }
 
     public int getDayCount() {
@@ -35,7 +28,7 @@ public class Tile {
         if(this.isPlowed)
             tile = "▧";
 
-        if(this.crop != null) {
+        if(this.isPlowed && this.crop != null) {
             if(setHarvestable())
                 tile = "♧";
             else if(setWithered())
