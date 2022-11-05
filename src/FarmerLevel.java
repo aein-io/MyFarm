@@ -1,10 +1,12 @@
 import java.util.Scanner;
-
+/**
+ * This class is used to represent the farmer's level, its progression, and benefits
+ * @version 1.0
+ */
 public class FarmerLevel {
     private String levelTitle;
     private int currentLevel;
 
-    // private int levelRequirement;
     private int bonusEarnings;
     private int seedDiscount;
     private int waterBonusInc;
@@ -12,6 +14,9 @@ public class FarmerLevel {
 
     private double registrationFee;
 
+    /**
+     * Constructor that instantiates the FarmerLevel object
+     */
     public FarmerLevel() {
         this.currentLevel = 0;
         this.levelTitle = "Farmer";
@@ -22,34 +27,66 @@ public class FarmerLevel {
         this.registrationFee = 0.0;
     }
     
+    /**
+     * Gets the current level title of the farmer
+     * @return levelTitle
+     */
     public String getLevelTitle() {
         return levelTitle;
     }
-    
+
+    /**
+     * Gets the current level of the farmer
+     * @return currentLevel
+     */    
     public int getCurrentLevel() {
         return currentLevel;
     }
     
+    /**
+     * Gets the bonus earnings of the farmer
+     * @return bonusEarnings
+     */
     public int getBonusEarnings() {
         return bonusEarnings;
     }
     
+    /**
+     * Gets the seed discount of the farmer
+     * @return seedDiscount
+     */
     public int getSeedDiscount() {
         return seedDiscount;
     }
     
+    /**
+     * Gets the water bonus limit increase of the farmer
+     * @return waterBonusInc
+     */
     public int getWaterBonusInc() {
         return waterBonusInc;
     }
     
+    /**
+     * Gets the fertilizer bonus limit increase of the farmer
+     * @return fertilizerBonusInc
+     */
     public int getFertilizerBonusInc() {
         return fertilizerBonusInc;
     }
     
+    /**
+     * Gets the registration fee for the next level that the farmer can upgrade to
+     * @return registrationFee
+     */
     public double getRegistrationFee() {
         return registrationFee;
     }
     
+    /**
+     * Upgrades the farmer to the next level
+     * @param farmer player of the game
+     */
     public void levelUp(Farmer farmer) {    
         Scanner getter = new Scanner(System.in);
 

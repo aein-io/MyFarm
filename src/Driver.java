@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/**
+ * This clas is the driver of the program
+ * @version 1.0
+ */
 public class Driver {
 
     public static void main(String[] args) {

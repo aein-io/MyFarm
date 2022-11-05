@@ -1,10 +1,20 @@
 import java.util.ArrayList;
 
+/**
+ * This class represents a farm plot which is the tiles that the player has
+ * @version 1.0
+ */
 public class FarmPlot {
     private Tile[][] tiles;
     private ArrayList<Seed> availableSeeds;
     private String farmName;
 
+    /**
+     * Constructor that creates and initializes a farm plot
+     * @param name the name of the farm
+     * @param row the number of rows of the farm
+     * @param col the number of columns of the farm
+     */
     public FarmPlot(String name, int row, int col) {
         this.tiles = new Tile[row][col];
 
@@ -22,10 +32,27 @@ public class FarmPlot {
         this.farmName = name;
     }
 
+    /**
+     * Gets a specific tile from the farm plot
+     * @param row the row where the tile is located
+     * @param col the column where the tile is located
+     * @returns the specific tile given a row and column
+     */
+    public Tile getTile(int row, int col) {
+        return this.tiles[row][col];
+    }
+
+    /**
+     * Method that returns the available seeds in the game
+     * @returns a Seed array list of available seeds 
+     */
     public ArrayList<Seed> getAvailableSeeds() {
         return this.availableSeeds;
     }
 
+    /**
+     * Prints all the available seeds in the game and their costs
+     */
     public void printAvailableSeeds() {
         System.out.println("Available seeds:");
         for (int index = 0; index < this.availableSeeds.size(); index++) {
@@ -33,8 +60,12 @@ public class FarmPlot {
         }
     }
 
+    /**
+     * Method that advances the day of the farmer
+     * @param farmer the player of the game
+     * @returns true if the player has not yet lost the game, false otherwise
+     */
     public boolean advanceDay(Farmer farmer){
-
         boolean gameOver = false;
 
         boolean noCrop = true;
@@ -93,10 +124,9 @@ public class FarmPlot {
         return true;
     }
 
-    public Tile getTile(int i, int j) {
-        return this.tiles[i][j];
-   }
-
+    /**
+     * Method that prints the farm plot tiles
+     */
     public void displayFarmPlot() {
         for(Tile[] row : this.tiles){
             for(Tile tile : row){

@@ -62,36 +62,7 @@ public class Crop {
         }
     }
 
-    public void water(){
-        timesWatered++;
-    }
-
-    public int getTimesWatered(){
-        return timesWatered;
-    }
-
-    public int getWaterBonus(){
-        return waterBonus;
-    }
-
-    public int getFertilizerBonus() {
-        return fertilizerBonus;
-    }
-
-    public void fertilize() {
-        timesFertilized++;
-    }
-
-    public boolean isWithered() {
-        return isWithered;
-    }
-
-    public int getHarvestYield() {
-        int yield = (int) (Math.random() * (harvestYieldMax - harvestYieldMin + 1) + harvestYieldMin);
-        return yield;
-    }
-
-	public String getName() {
+    public String getName() {
 		return name;
 	}
 
@@ -99,9 +70,17 @@ public class Crop {
 		return type;
 	}
 
+    public int getTimesWatered(){
+        return timesWatered;
+    }
+
 	public int getWaterNeeds() {
 		return waterNeeds;
 	}
+
+    public int getWaterBonus(){
+        return waterBonus;
+    }
 
 	public int getTimesFertilized() {
 		return timesFertilized;
@@ -111,6 +90,10 @@ public class Crop {
 		return fertilizerNeeds;
 	}
 
+    public int getFertilizerBonus() {
+        return fertilizerBonus;
+    }
+
 	public double getExpGain() {
 		return expGain;
 	}
@@ -119,31 +102,66 @@ public class Crop {
 		return harvestTime;
 	}
 
-	public int getPlantedSince() {
-		return plantedSince;
-	}
-
-	public boolean isHarvestable() {
-		return isHarvestable;
-	}
-
+    /**
+     * @return A random integer between the minimum harvest and the maximum harvest
+     */
+    public int getHarvestYield() {
+        int yield = (int) (Math.random() * (harvestYieldMax - harvestYieldMin + 1) + harvestYieldMin);
+        return yield;
+    }
+    
     public double getBasePrice() {
         return basePrice;
     }
 
-    public void updatePlantedSince() {
-        plantedSince++;
-    }
-
+	/**
+	 * @return The number of days the plant has been planted for
+	 */
     public int plantedWhen(){
         return plantedSince;
     }
+    
+    public boolean isWithered() {
+        return isWithered;
+    }
+	
+	public boolean isHarvestable() {
+		return isHarvestable;
+	}
 
+    /** 
+     * Increments timesWatered by 1
+     */
+    public void water(){
+        timesWatered++;
+    }
+
+    /**
+     * Increments timesFertilized by 1
+     */
+    public void fertilize() {
+        timesFertilized++;
+    }
+
+    /**
+     * Sets the plant's wither status to true
+     */
     public void wither(){
         this.isWithered = true;
     }
 
+    /**
+     * Changes the isHarvestable state of the crop
+     * @param b Whether the crop is harvestable
+     */
     public void setHarvestable(boolean b) {
         this.isHarvestable = b;
+    }
+    
+    /**
+     * Adds to the number of days the crop has been planted for
+     */
+    public void updatePlantedSince() {
+        plantedSince++;
     }
 }
