@@ -1,125 +1,90 @@
-import java.util.*;
-
 public class Tile {
 
-    private Turnip crop;
+    private Crop crop;
+    private TileStatus availability;
     private boolean isPlowed;
-    private boolean isWithered;
-    private boolean isHarvestable;
-    private int dayCount;
 
     public Tile() {
         this.crop = null;
         this.isPlowed = false;
-        this.isWithered = false;
-        this.isHarvestable = false;
-        this.dayCount = 1;
+        this.availability = new TileStatus();
     }
 
-    public String display() {
-        
-        String tile = "□";
-
-        if(this.isPlowed) {
-            tile = "▧";
-
-            if(this.getCrop() != null) {
-                if(this.isHarvestable())
-                    tile = "♧";
-                else if(this.isWithered())
-                    tile = "⊠";
-                else if(this.getCrop().getTimesWatered() >= 1)
-                    tile = "⁕";
-                else
-                    tile = "🝕";
-            }
-        }
-
-        return tile;
-    }
-
-    public int getDayCount() {
-        return this.dayCount;
-    }
-
-    public void growCrop() {
-        
-        Scanner sc = new Scanner(System.in);
-        
-        this.dayCount = this.dayCount + 1;
-        
-        // No crop is planted
-        if (getCrop() == null) {
-            System.out.println("\n< Daily Progress >");
-            System.out.println("There are no seeds planted.");
-            
-            System.out.print("\nPress <ENTER> to continue ");
-            sc.nextLine();
-        }
-        
-        // Crop progress
-        else {
-            System.out.println("\n< Daily Progress >");
-            System.out.println("Times Watered: " + getCrop().getTimesWatered());
-            System.out.println("Times Fertilized: " + getCrop().getTimesFertilized());
-            System.out.println("Crops Harvested: " + getCrop().getProduced());
-
-            // Crop is harvestable
-            if (getCrop().getHarvestTime() == getDayCount() &&  (getCrop().getTimesWatered() >= getCrop().getWaterNeeds() || getCrop().getTimesFertilized() >= getCrop().getFertilizerNeeds())) {
-                setHarvestable();
-                System.out.println("\nGood job! Your crop is ready for harvesting!");
-                System.out.print("\nPress <ENTER> to continue ");
-                sc.nextLine();
-            }
-
-            // Crop has withered
-            else if (getCrop().getHarvestTime() == getDayCount() &&  (getCrop().getTimesWatered() < getCrop().getWaterNeeds() || getCrop().getTimesFertilized() < getCrop().getFertilizerNeeds())) {
-                setWithered();
-                System.out.println("\nOh no! Your crop has withered.");
-                System.out.print("\nPress <ENTER> to continue ");
-                sc.nextLine();
-            }
-
-            // Crop is still growing
-            else {
-                System.out.print("\nPress <ENTER> to continue ");
-                sc.nextLine();
-            }
-        }
-    }
-
-    public void setPlowed() {
-        this.isPlowed = true;
-    }
-
-    public void setHarvestable() {
-        this.isHarvestable = true;
-    }
-
-    public void setWithered() {
-        this.isWithered= true;
-    }
-
-    public Turnip getCrop() {
-
+    public Crop getCrop() {
         return crop;
     }
 
-    public void setCrop(Turnip crop) {
+    public void setCrop(Crop crop) {
         this.crop = crop;
     }
 
     public boolean isPlowed() {
-        return isPlowed;
+        return this.isPlowed;
     }
 
-    public boolean isHarvestable() {
-        return isHarvestable;
+    public void setPlowed(boolean plow) {
+        this.isPlowed = plow;
     }
 
-    public boolean isWithered() {
-        return isWithered;
+    public TileStatus getTileStatus() {
+        return this.availability;
     }
 
+    public boolean isAvailable(){
+        return this.availability.getAvailability();
+    }
+
+    public void makeAvailable() {
+        this.availability = new TileStatus();
+    }
+
+    public void updateTile() {
+
+        // return if the tile does not have a crop
+        if(this.crop == null)
+            return;
+
+        // update crop status
+        this.crop.updatePlantedSince();
+
+        // check if crop if harvest time
+        boolean harvestDay = this.crop.getPlantedSince() == this.crop.getHarvestTime() ? true : false;
+
+        // check if needs are met
+        boolean waterNeedsMet = this.crop.getTimesWatered() >= this.crop.getWaterNeeds() ? true : false;
+        boolean fertilizerNeedsMet = this.crop.getTimesFertilized() >= this.crop.getFertilizerNeeds() ? true : false;
+
+
+        if(harvestDay && waterNeedsMet && fertilizerNeedsMet) {
+            this.crop.setHarvestable(true);
+            return;
+        }
+
+        if(harvestDay && (!waterNeedsMet || !fertilizerNeedsMet)) {
+            this.crop.wither();
+            this.availability.hasWithered();
+            this.crop.setHarvestable(false);
+            return;
+        }
+    }
+
+    public String display() {
+
+        String display = "❇️";
+
+        if(this.isPlowed) {
+            display = "🟫";
+        
+            if(this.availability.checkHasCrop()){
+                display = "🌱";
+                if(this.getCrop().isHarvestable())
+                    display = "🌾";
+            }
+        }
+
+        if(this.availability.isWithered())
+            display = "🍃";
+
+        return display;
+    }
 }
-
