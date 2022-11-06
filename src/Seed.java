@@ -14,11 +14,11 @@ public class Seed {
         switch(name){
             case "Turnip" :
                 this.name = "Turnip";
-                this.cost = 5.00;
+                this.cost = 6.00;
                 break;
             case "Carrot" :
                 this.name = "Carrot";
-                this.cost = 10.00;
+                this.cost = 9.00;
                 break;
         }
     }

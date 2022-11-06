@@ -106,7 +106,7 @@ public class Farmer {
                 Tile tile = farmer.getFreeTile();
                 ToolStatus ts = new ToolStatus();
 
-                ts.setFeedback("\nTile cannot be plowed");
+                ts.setFeedback("Tile cannot be plowed");
 
                 if(!tile.isPlowed() && tile.isAvailable()){
                     tile.setPlowed(true);
@@ -115,7 +115,7 @@ public class Farmer {
                     farmer.giveExp(this.getExpGain());
 
 
-                    ts.setFeedback("\nTile successfully plowed");
+                    ts.setFeedback("Tile successfully plowed");
                     ts.setSuccess(true);
                 }
 
@@ -138,15 +138,15 @@ public class Farmer {
 
                 int timesWatered = tile.getCrop().getTimesWatered();
                 int waterBonus = tile.getCrop().getWaterBonus();
-                ts.setFeedback("\nFailed to water crop");
+                ts.setFeedback("Failed to water crop");
 
                 if (tile.getCrop() != null) {
                     if (timesWatered < waterBonus + waterBonusInc) {
                         tile.getCrop().water();
-                        ts.setFeedback("\nCrop successfully watered");
+                        ts.setFeedback("Crop successfully watered");
                         ts.setSuccess(true);
                         if (timesWatered == waterBonus + waterBonusInc) {
-                            ts.setFeedback("\nCrop's water bonus has been reached :D");
+                            ts.setFeedback("Crop's water bonus has been reached :D");
                         }
 
                         // give exp
@@ -174,32 +174,32 @@ public class Farmer {
                 int fertilizerBonusInc = farmer.level.getFertilizerBonusInc();
 
                 int timesFertilized = tile.getCrop().getTimesFertilized();
-                ts.setFeedback("\nFailed to fertilize crop");
+                ts.setFeedback("Failed to fertilize crop");
 
                 // check if tile has a crop
                 if (tile.getCrop() == null) {
-                    ts.setFeedback("\nNo crop to fertilize");
+                    ts.setFeedback("No crop to fertilize");
                     return ts;
                 }
 
                 if(tile.getCrop().isWithered()){
-                    ts.setFeedback("\nWithered crop cannot be fertilized");
+                    ts.setFeedback("Withered crop cannot be fertilized");
                     return ts;
                 }
 
                 // check if farmer has enough money
                 if (farmer.getObjectCoins() < this.getCost()) {
-                    ts.setFeedback("\nNot enough money to fertilize crop");
+                    ts.setFeedback("Not enough money to fertilize crop");
                     return ts;
                 }
 
                 // check if crop has not exceeded fertilizer bonus
                 if (timesFertilized < fertilizerBonus + fertilizerBonusInc) {
                     tile.getCrop().fertilize();
-                    ts.setFeedback("\nCrop successfully fertilized");
+                    ts.setFeedback("Crop successfully fertilized");
 
                     if (timesFertilized == fertilizerBonus + fertilizerBonusInc) {
-                        ts.setFeedback("\nCrop's fertilizer bonus has been reached :D");
+                        ts.setFeedback("Crop's fertilizer bonus has been reached :D");
                     }
 
                     // give farmer exp
@@ -228,26 +228,26 @@ public class Farmer {
                 ToolStatus ts = new ToolStatus();
 
                 if(tile.isAvailable()){
-                    ts.setFeedback("\nTile is empty");
+                    ts.setFeedback("Tile is empty");
                     return ts;
                 }
 
                 // check if tile has no rocks
                 if(!tile.getTileStatus().getReason().contains("rocks") || 
                    !tile.getTileStatus().getReason().contains("Rocks")){
-                    ts.setFeedback("\nNo rocks to mine");
+                    ts.setFeedback("No rocks to mine");
                     return ts;
                 }
 
                 // check if farmer has enough money
                 if (farmer.getObjectCoins() < this.getCost()) {
-                    ts.setFeedback("\nNot enough money to mine rocks");
+                    ts.setFeedback("Not enough money to mine rocks");
                     return ts;
                 }
 
                 // update tilestatus
                 tile.makeAvailable();
-                ts.setFeedback("\nSuccessfully removed rocks from tile");
+                ts.setFeedback("Successfully removed rocks from tile");
 
                 // give exp
                 farmer.giveExp(this.getExpGain());
@@ -272,23 +272,23 @@ public class Farmer {
             public ToolStatus use(Farmer farmer){
                 Tile tile = farmer.getFreeTile();
                 ToolStatus ts = new ToolStatus();
-                ts.setFeedback("\nFailed to dig up crop");
+                ts.setFeedback("Failed to dig up crop");
                 // check if tile has a withered plant
                 if (tile.getCrop() == null)
                     return ts;
 
                 if (tile.isAvailable()){
-                    ts.setFeedback("\nTile is empty");
+                    ts.setFeedback("Tile is empty");
                 }
 
 
                 if(!tile.getCrop().isWithered()){
-                    ts.setFeedback("\nCrop is not withered");
+                    ts.setFeedback("Crop is not withered");
                     return ts;
                 }
 
                 if (farmer.getObjectCoins() < this.getCost()){
-                    ts.setFeedback("\nNot enough money to dig up crop");
+                    ts.setFeedback("Not enough money to dig up crop");
                     return ts;
                 }
 
@@ -396,7 +396,7 @@ public class Farmer {
 
         // set tile to empty
         freeTile.setCrop(null);
-        freeTile.setPlowed(false);
+
         freeTile.makeAvailable();
 
         return true;
