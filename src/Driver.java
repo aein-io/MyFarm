@@ -21,15 +21,13 @@ public class Driver {
         while (!exit) {
 
             // Start
-
             System.out.print("\033[H\033[2J");
             System.out.println("DAY " + (days + 1));
-
             System.out.println("\nWelcome, " + farmer.getFarmerLevel().getLevelTitle() + " " + farmer.getName() + ".");
 
             // Tasks
             int input = -1;
-            while (input != 7) {
+            while (input != 7 && input != 0) {
                 System.out.println("You currently have " + farmer.getObjectCoins() + " Objectcoins.\n");
                 System.out.println("Exp: " + farmer.getExp());
                 System.out.println("Level: " + farmer.getFarmerLevel().getCurrentLevel());
@@ -55,7 +53,6 @@ public class Driver {
                     case 1:
                         feedback = farmer.usePlow(farmer);
                         System.out.println(feedback.getFeedback());
-
                         break;
                     case 2:
                         // check if the farmer is standing on a tile that currently has a crop
@@ -101,19 +98,19 @@ public class Driver {
                         break;
                     case 5:
                         if (farmer.harvestCrop()) {
-                            System.out.println("You harvested a crop.");
+
                         } else {
                             System.out.println("There is nothing to harvest.");
                         }
                         break;
                     case 6:
-                        // check if the farmer is standing on a tile that currently has a withered crop
+                        // Check if tile has a withered crop
                         if (farmer.getFreeTile().isAvailable() == true || farmer.getFreeTile().getCrop().isWithered() == false) {
                             System.out.println("\nNo withered crop to remove!");
                             break;
                         }
 
-                        // use shovel if the tile has a withered crop
+                        // Use shovel if the tile has a withered crop
                         farmer.useShovel(farmer);
                         System.out.println("You removed the withered crop!");
                         break;

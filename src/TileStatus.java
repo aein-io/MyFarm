@@ -13,6 +13,7 @@ public class TileStatus {
     public TileStatus() {
         this.reason = null;
         this.isAvailable = true;
+        
     }
     
     /**
@@ -26,16 +27,16 @@ public class TileStatus {
     }
 
     public void hasRock(){
-        setStatus("The tile has a rock", false);
+        setStatus("The tile has a rock.", false);
     }
 
     public void hasWithered(){
-        setStatus("The tile has a withered crop", false);
+        setStatus("The tile has a withered crop.", false);
     }
 
     public boolean isWithered(){
         if(this.reason != null){
-            if(this.reason.equals("The tile has a withered crop"))
+            if(this.reason.equals("The tile has a withered crop."))
             return true;
         }
         

@@ -382,7 +382,7 @@ public class Farmer {
 
         int yield = crop.getHarvestYield();
 
-        System.out.println("\nYou have harvested " + yield + " " + crop.getName() + "s!");
+        System.out.println("\nYou have harvested " + yield + " " + crop.getName() + "(s)!");
 
         double harvestTotal = yield * (crop.getBasePrice());
         double waterBonus = harvestTotal * 0.2 * (crop.getTimesWatered() - 1);
@@ -396,7 +396,7 @@ public class Farmer {
 
         // set tile to empty
         freeTile.setCrop(null);
-
+        freeTile.setPlowed(false);
         freeTile.makeAvailable();
 
         return true;
