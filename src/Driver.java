@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * This clas is the driver of the program
+ * This class is the driver of the program.
  * @version 1.0
  */
 public class Driver {
@@ -10,7 +10,7 @@ public class Driver {
 
         int days = 0;
 
-        FarmPlot farm = new FarmPlot("Prototype Farms", 1, 1);
+        FarmPlot farm = new FarmPlot("Prototype Farm", 1, 1);
         Farmer farmer = new Farmer("Tester", farm.getTile(0, 0));
 
         Scanner sc = new Scanner(System.in);
@@ -30,7 +30,7 @@ public class Driver {
             // Tasks
             int input = -1;
             while (input != 7) {
-                System.out.println("You currently have " + farmer.getObjectCoins() + " Objectcoins.\n");
+                System.out.println("You currently have $" + farmer.getObjectCoins() + " Objectcoins.\n");
                 System.out.println("Exp: " + farmer.getExp());
                 System.out.println("Level: " + farmer.getFarmerLevel().getCurrentLevel());
                 System.out.println("--------------------");
@@ -75,7 +75,7 @@ public class Driver {
                         // farmer uses seed to plant
                         System.out.println();
                         farm.printAvailableSeeds();
-                        System.out.println("\nSelect a seed to plant: ");
+                        System.out.print("\nSelect a seed to plant: ");
                         int seed = sc.nextInt();
                         if (seed < 0 || seed >= farm.getAvailableSeeds().size()) {
                             System.out.println("Invalid input.");
