@@ -104,7 +104,7 @@ public class Driver {
                         }
                         break;
                     case 6:
-                        // Check if tile has a withered crop
+                        // Check if tile has aa withered crop
                         if (farmer.getFreeTile().isAvailable() == true || farmer.getFreeTile().getCrop().isWithered() == false) {
                             System.out.println("\nNo withered crop to remove!");
                             break;
