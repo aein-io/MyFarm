@@ -48,8 +48,8 @@ public class Crop {
                 this.waterNeeds = 1;
                 this.waterBonus = 2;
                 this.timesFertilized = 0;
-                this.fertilizerNeeds = 3;
-                this.fertilizerBonus = 2;
+                this.fertilizerNeeds = 0;
+                this.fertilizerBonus = 1;
                 this.basePrice = 9.0;
                 this.expGain = 7.5;
                 this.harvestTime = 3;

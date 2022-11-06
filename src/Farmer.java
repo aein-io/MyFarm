@@ -377,14 +377,14 @@ public class Farmer {
 
         Crop crop = freeTile.getCrop();
 
-        if(!crop.isHarvestable() && !crop.isWithered())
+        if(!crop.isHarvestable() && !crop.isWithered() || crop.isWithered())
             return false;
 
-        int produced = crop.getHarvestYield();
+        int yield = crop.getHarvestYield();
 
-        System.out.println("\nYou have harvested " + produced + " " + crop.getName() + "!");
+        System.out.println("\nYou have harvested " + yield + " " + crop.getName() + "s!");
 
-        double harvestTotal = produced * (crop.getBasePrice());
+        double harvestTotal = yield * (crop.getBasePrice());
         double waterBonus = harvestTotal * 0.2 * (crop.getTimesWatered() - 1);
         double fertilizerBonus = harvestTotal * 0.5 * crop.getTimesFertilized();
         double finalHarvestPrice = harvestTotal + waterBonus + fertilizerBonus;

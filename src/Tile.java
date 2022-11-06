@@ -81,7 +81,7 @@ public class Tile {
         // update crop status
         this.crop.updatePlantedSince();
 
-        // check if crop if harvest time
+        // check if crop harvest time
         boolean harvestDay = this.crop.plantedWhen() == this.crop.getHarvestTime() ? true : false;
 
         // check if needs are met
@@ -94,7 +94,7 @@ public class Tile {
             return;
         }
 
-        if(harvestDay && (!waterNeedsMet || !fertilizerNeedsMet)) {
+        if(harvestDay && (!waterNeedsMet || !fertilizerNeedsMet) || this.crop.plantedWhen() > this.crop.getHarvestTime()) {
             this.crop.wither();
             this.availability.hasWithered();
             this.crop.setHarvestable(false);
