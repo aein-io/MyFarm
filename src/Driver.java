@@ -110,13 +110,6 @@ public class Driver {
                         if (farmer.harvestCrop()) {
 
                         } 
-                        else if (farmer.getFreeTile().getCrop().isWithered()) {
-                            System.out.println("\nWithered crop cannot be harvested!");
-                        }
-                        
-                        else {
-                            System.out.println("\nNo crop to harvest!");
-                        }
                         break;
                     case 6:
                         // Check if tile has a withered crop

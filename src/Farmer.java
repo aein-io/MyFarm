@@ -158,15 +158,10 @@ public class Farmer {
                 }
                 
                 if (tile.getCrop() != null) {
-                    if (timesWatered < waterBonus + waterBonusInc) {
-                        tile.getCrop().water();
-                        ts.setFeedback("\nCrop successfully watered.");
-                        ts.setSuccess(true);
-                        farmer.giveExp(this.getExpGain());
-                    }
-                    else if (timesWatered == waterBonus + waterBonusInc) {
-                        ts.setFeedback("\nCrop's water bonus has been reached.");
-                    }
+                    tile.getCrop().water();
+                    ts.setFeedback("\nCrop successfully watered.");
+                    ts.setSuccess(true);
+                    farmer.giveExp(this.getExpGain());
                 }
 
                 return ts;
@@ -214,23 +209,16 @@ public class Farmer {
                     ts.setFeedback("\nNot enough money to fertilize crop.");
                     return ts;
                 }
-
-                // Checks if bonus is reached
-                if (timesFertilized == fertilizerBonus + fertilizerBonusInc) {
-                    ts.setFeedback("\nCrop's fertilizer bonus has been reached.");
-                }
                 
-                // Successfully fertilize crop
-                if (timesFertilized < fertilizerBonus + fertilizerBonusInc) {
-                    tile.getCrop().fertilize();
-                    ts.setFeedback("\nCrop successfully fertilized.");
+                // Else
+                tile.getCrop().fertilize();
+                ts.setFeedback("\nCrop successfully fertilized.");
 
-                    // Gives farmer exp
-                    farmer.giveExp(this.getExpGain());
-                    // Deducts coins accordingly
-                    farmer.updateCoins(-1 * this.getCost());
-                    ts.setSuccess(true);
-                }
+                // Gives farmer exp
+                farmer.giveExp(this.getExpGain());
+                // Deducts coins accordingly
+                farmer.updateCoins(-1 * this.getCost());
+                ts.setSuccess(true);
 
                 return ts;
             }
@@ -399,13 +387,24 @@ public class Farmer {
      * @returns true if the crop is successfully harvested, false otherwise
      */
     public boolean harvestCrop() {
-        if(freeTile.getCrop() == null)
+        
+        if (freeTile.getCrop() == null) {
+            System.out.println("\nNo crop to harvest!");
             return false;
-
+        }
+        
         Crop crop = freeTile.getCrop();
 
-        if(!crop.isHarvestable() && !crop.isWithered() || crop.isWithered())
+        if (!crop.isHarvestable() && !crop.isWithered()) {
+            System.out.println("\nCrop is not yet harvestable!");
             return false;
+        }
+
+        if (crop.isWithered()) {
+            System.out.println("\nWithered crop cannot be harvested.");
+            return false;
+        }
+            
 
         int yield = crop.getHarvestYield();
 
