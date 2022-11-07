@@ -26,6 +26,9 @@ public class Crop {
     private boolean isHarvestable;
     private boolean isWithered;
 
+    /**
+     * Initializes a crop with their default values.
+     */
     public Crop(String seedName) {
         switch(seedName) {
             case "Turnip" :
@@ -67,47 +70,99 @@ public class Crop {
         }
     }
 
+    /**
+     * Gets the name of a crop.
+     * 
+     * @return name of crop
+     */
     public String getName() {
 		return name;
 	}
 
-	public String getType() {
+	/**
+     * Gets the type of a crop.
+     * 
+     * @return type of crop
+     */
+    public String getType() {
 		return type;
 	}
 
+    /**
+     * Gets the number of times a crop is watered.
+     * 
+     * @return times a crop is watered
+     */
     public int getTimesWatered(){
         return timesWatered;
     }
 
+    /**
+     * Gets the required times a crop must be watered.
+     * 
+     * @return water requirement
+     */
 	public int getWaterNeeds() {
 		return waterNeeds;
 	}
 
+    /**
+     * Gets the maximum times a crop can be watered.
+     * 
+     * @return maximum water times
+     */
     public int getWaterBonus(){
         return waterBonus;
     }
 
-	public int getTimesFertilized() {
+    /**
+     * Gets the number of times a crop is fertilized.
+     * 
+     * @return times a crop is fertilized
+     */
+    public int getTimesFertilized() {
 		return timesFertilized;
 	}
 
+    /**
+     * Gets the required times a crop must be fertilized.
+     * 
+     * @return fertilized requirement
+     */
 	public int getFertilizerNeeds() {
 		return fertilizerNeeds;
 	}
 
+    /**
+     * Gets the maximum times a crop can be fertilized.
+     * 
+     * @return maximum fertilizer times
+     */
     public int getFertilizerBonus() {
         return fertilizerBonus;
     }
 
-	public double getExpGain() {
+	/**
+     * Gets experience gained from harvesting a crop.
+     * 
+     * @return experience from crop
+     */
+    public double getExpGain() {
 		return expGain;
 	}
 
+    /**
+     * Gets the harvest time of a crop.
+     * 
+     * @return crop's harvest time
+     */
 	public int getHarvestTime() {
 		return harvestTime;
 	}
 
     /**
+     * Gets random number of produced crops from one harvest.
+     * 
      * @return A random integer between the minimum harvest and the maximum harvest
      */
     public int getHarvestYield() {
@@ -115,22 +170,39 @@ public class Crop {
         return yield;
     }
     
+    /**
+     * Gets base price of a crop.
+     * 
+     * @return crop's base price
+     */
     public double getBasePrice() {
         return basePrice;
     }
 
 	/**
-	 * @return The number of days the plant has been planted for
+	 * Gets the number of days a crop has been planted.
+     * 
+     * @return the number of days the crop has been planted for
 	 */
     public int plantedWhen(){
         return plantedSince;
     }
     
+    /**
+     * Checks if a crop has withered.
+     * 
+     * @return true if crop has withered, false otherwise
+     */
     public boolean isWithered() {
         return isWithered;
     }
 	
-	public boolean isHarvestable() {
+	/**
+     * Checks if a crop is harvestable.
+     * 
+     * @return true is crop is harvestable, false otherwise
+     */
+    public boolean isHarvestable() {
 		return isHarvestable;
 	}
 
@@ -156,7 +228,8 @@ public class Crop {
     }
 
     /**
-     * Changes the isHarvestable state of the crop
+     * Changes the isHarvestable state of the crop.
+     * 
      * @param b Whether the crop is harvestable
      */
     public void setHarvestable(boolean b) {
@@ -164,7 +237,7 @@ public class Crop {
     }
     
     /**
-     * Adds to the number of days the crop has been planted for
+     * Adds to the number of days the crop has been planted for.
      */
     public void updatePlantedSince() {
         plantedSince++;
