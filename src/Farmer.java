@@ -158,10 +158,25 @@ public class Farmer {
                 }
                 
                 if (tile.getCrop() != null) {
-                    tile.getCrop().water();
-                    ts.setFeedback("\nCrop successfully watered.");
-                    ts.setSuccess(true);
-                    farmer.giveExp(this.getExpGain());
+
+                    if(timesWatered < waterBonus + waterBonusInc) {
+                        tile.getCrop().water();
+                        ts.setFeedback("\nCrop successfully watered.");
+                        ts.setSuccess(true);
+
+                        farmer.giveExp(this.getExpGain());
+                        
+                        if(timesWatered + 1 == waterBonus + waterBonusInc)
+                            ts.setFeedback("\nCrop has reached the water bonus limit!");
+                    }
+
+                    
+
+                    if (timesWatered == waterBonus + waterBonusInc) {
+                        ts.setFeedback("\nCrop watered beyond its water bonus.");
+                        ts.setSuccess(true);
+                        farmer.giveExp(this.getExpGain());
+                    }
                 }
 
                 return ts;
@@ -209,16 +224,30 @@ public class Farmer {
                     ts.setFeedback("\nNot enough money to fertilize crop.");
                     return ts;
                 }
-                
-                // Else
-                tile.getCrop().fertilize();
-                ts.setFeedback("\nCrop successfully fertilized.");
 
-                // Gives farmer exp
-                farmer.giveExp(this.getExpGain());
-                // Deducts coins accordingly
-                farmer.updateCoins(-1 * this.getCost());
-                ts.setSuccess(true);
+                if(timesFertilized < fertilizerBonus + fertilizerBonusInc){
+                    tile.getCrop().fertilize();
+                    ts.setFeedback("\nCrop successfully fertilized.");
+                    ts.setSuccess(true);
+                    farmer.giveExp(this.getExpGain());
+                    farmer.updateCoins(this.getCost());
+                    // Gives farmer exp
+                    farmer.giveExp(this.getExpGain());
+                    // Deducts coins accordingly
+                    farmer.updateCoins(-1 * this.getCost());
+
+                    if(timesFertilized + 1 == fertilizerBonus + fertilizerBonusInc)
+                        ts.setFeedback("\nCrop has reached the fertilizer bonus limit!");
+                }
+                
+                if (timesFertilized == fertilizerBonus + fertilizerBonusInc) {
+                    ts.setFeedback("\nCrop fertilized beyond its fertilizer bonus.");
+                    ts.setSuccess(true);
+                    farmer.giveExp(this.getExpGain());
+                    farmer.updateCoins(-1 * this.getCost());
+                }
+
+                
 
                 return ts;
             }

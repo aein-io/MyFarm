@@ -109,7 +109,9 @@ public class Driver {
                     case 5:
                         if (farmer.harvestCrop()) {
 
-                        } 
+                        } else {
+                            System.out.println("There is nothing to harvest.");
+                        }
                         break;
                     case 6:
                         // Check if tile has a withered crop
@@ -128,6 +130,7 @@ public class Driver {
                 System.out.print("\nPress <ENTER> to continue ");
                 sc.nextLine();
                 sc.nextLine();
+                
                 // Clear screen
                 System.out.print("\033[H\033[2J");
             }
@@ -140,5 +143,6 @@ public class Driver {
             // Ask for user input to continue
             // Empty the input buffer
         }
+        sc.close();
     }
 }

@@ -40,6 +40,7 @@ public class Tile {
      * Makes the tile available by initializing a new and default TileStatus.
      */
     public void makeAvailable() {
+        this.isPlowed = false;
         this.availability = new TileStatus();
     }
 
