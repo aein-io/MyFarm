@@ -158,15 +158,10 @@ public class Farmer {
                 }
                 
                 if (tile.getCrop() != null) {
-                    if (timesWatered < waterBonus + waterBonusInc) {
-                        tile.getCrop().water();
-                        ts.setFeedback("\nCrop successfully watered.");
-                        ts.setSuccess(true);
-                        farmer.giveExp(this.getExpGain());
-                    }
-                    else if (timesWatered == waterBonus + waterBonusInc) {
-                        ts.setFeedback("\nCrop's water bonus has been reached.");
-                    }
+                    tile.getCrop().water();
+                    ts.setFeedback("\nCrop successfully watered.");
+                    ts.setSuccess(true);
+                    farmer.giveExp(this.getExpGain());
                 }
 
                 return ts;
@@ -215,22 +210,15 @@ public class Farmer {
                     return ts;
                 }
                 
-                // Checks if bonus is reached
-                if (timesFertilized == fertilizerBonus + fertilizerBonusInc) {
-                    ts.setFeedback("\nCrop's fertilizer bonus has been reached.");
-                }
-                
-                // Successfully fertilize crop
-                if (timesFertilized < fertilizerBonus + fertilizerBonusInc) {
-                    tile.getCrop().fertilize();
-                    ts.setFeedback("\nCrop successfully fertilized.");
+                // Else
+                tile.getCrop().fertilize();
+                ts.setFeedback("\nCrop successfully fertilized.");
 
-                    // Gives farmer exp
-                    farmer.giveExp(this.getExpGain());
-                    // Deducts coins accordingly
-                    farmer.updateCoins(-1 * this.getCost());
-                    ts.setSuccess(true);
-                }
+                // Gives farmer exp
+                farmer.giveExp(this.getExpGain());
+                // Deducts coins accordingly
+                farmer.updateCoins(-1 * this.getCost());
+                ts.setSuccess(true);
 
                 return ts;
             }
