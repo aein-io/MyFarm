@@ -1,6 +1,8 @@
 import java.util.Scanner;
+
 /**
- * This class is used to represent the farmer's level, its progression, and benefits
+ * This class is used to represent the farmer's level, its progression, and benefits.
+ * 
  * @version 1.0
  */
 public class FarmerLevel {
@@ -15,7 +17,7 @@ public class FarmerLevel {
     private double registrationFee;
 
     /**
-     * Constructor that instantiates the FarmerLevel object
+     * Constructor that instantiates the FarmerLevel object.
      */
     public FarmerLevel() {
         this.currentLevel = 0;
@@ -28,7 +30,8 @@ public class FarmerLevel {
     }
     
     /**
-     * Gets the current level title of the farmer
+     * Gets the current level title of the farmer.
+     * 
      * @return levelTitle
      */
     public String getLevelTitle() {
@@ -36,7 +39,8 @@ public class FarmerLevel {
     }
 
     /**
-     * Gets the current level of the farmer
+     * Gets the current level of the farmer.
+     * 
      * @return currentLevel
      */    
     public int getCurrentLevel() {
@@ -44,7 +48,8 @@ public class FarmerLevel {
     }
     
     /**
-     * Gets the bonus earnings of the farmer
+     * Gets the bonus earnings of the farmer.
+     * 
      * @return bonusEarnings
      */
     public int getBonusEarnings() {
@@ -52,7 +57,8 @@ public class FarmerLevel {
     }
     
     /**
-     * Gets the seed discount of the farmer
+     * Gets the seed discount of the farmer.
+     * 
      * @return seedDiscount
      */
     public int getSeedDiscount() {
@@ -60,7 +66,8 @@ public class FarmerLevel {
     }
     
     /**
-     * Gets the water bonus limit increase of the farmer
+     * Gets the water bonus limit increase of the farmer.
+     * 
      * @return waterBonusInc
      */
     public int getWaterBonusInc() {
@@ -68,7 +75,8 @@ public class FarmerLevel {
     }
     
     /**
-     * Gets the fertilizer bonus limit increase of the farmer
+     * Gets the fertilizer bonus limit increase of the farmer.
+     * 
      * @return fertilizerBonusInc
      */
     public int getFertilizerBonusInc() {
@@ -76,7 +84,8 @@ public class FarmerLevel {
     }
     
     /**
-     * Gets the registration fee for the next level that the farmer can upgrade to
+     * Gets the registration fee for the next level that the farmer can promote to.
+     * 
      * @return registrationFee
      */
     public double getRegistrationFee() {
@@ -84,7 +93,8 @@ public class FarmerLevel {
     }
     
     /**
-     * Upgrades the farmer to the next level
+     * Promotes the farmer to the next level.
+     * 
      * @param farmer player of the game
      */
     public void levelUp(Farmer farmer) {    
@@ -97,11 +107,10 @@ public class FarmerLevel {
                 this.levelTitle != "Legendary Farmer") {
             this.registrationFee = 200.0;
 
-            // prompt user to pay registration fee
-            // if user pays, set levelTitle to "Registered Farmer"
+            // Prompt user to pay registration fee
+            // If user pays, set levelTitle to "Registered Farmer"
 
-
-            // check if the farmer can afford the upgrade
+            // Checks if the farmer can afford the upgrade
             if(farmer.getObjectCoins() < this.registrationFee)
                 return;
 
@@ -110,7 +119,7 @@ public class FarmerLevel {
                 this.levelTitle = "Registered Farmer";
                 System.out.println("You are now a registered farmer!");
 
-                // update farmer level benefits
+                // Update farmer level benefits
                 this.bonusEarnings = 1;
                 this.seedDiscount = 1;
             }
@@ -119,20 +128,19 @@ public class FarmerLevel {
         if(this.currentLevel > 9 && this.levelTitle == "Registered Farmer"){
             this.registrationFee = 300.0;
 
-            // prompt user to pay registration fee
-            // if user pays, set levelTitle to "Registered Farmer"
+            // Prompt user to pay registration fee
+            // If user pays, set levelTitle to "Distinguished Farmer"
 
-            // check if the farmer can afford the upgrade
+            // Check if the farmer can afford the upgrade
             if(farmer.getObjectCoins() < this.registrationFee)
                 return;
-
 
             System.out.println("You have reached the required level to become a Distinguished farmer!\nWould you like to pay the registration fee of $200.00? (Y/N)");
             if(getter.nextLine().equalsIgnoreCase("Y")) {
                 this.levelTitle = "Distinguished Farmer";
                 System.out.println("You are now a Distinguished farmer!");
 
-                // update farmer level benefits
+                // Update farmer level benefits
                 this.bonusEarnings = 2;
                 this.seedDiscount = 2;
                 this.waterBonusInc = 1;
@@ -142,20 +150,19 @@ public class FarmerLevel {
         if(this.currentLevel > 14 && this.levelTitle == "Distinguished Farmer"){
             this.registrationFee = 400.0;
 
-            // prompt user to pay registration fee
-            // if user pays, set levelTitle to "Registered Farmer"
+            // Prompt user to pay registration fee
+            // If user pays, set levelTitle to "Legendary Farmer"
 
-            // check if the farmer can afford the upgrade
+            // Check if the farmer can afford the upgrade
             if(farmer.getObjectCoins() < this.registrationFee)
                 return;
-
 
             System.out.println("You have reached the required level to become a Legendary farmer!\nWould you like to pay the registration fee of $200.00? (Y/N)");
             if(getter.nextLine().equalsIgnoreCase("Y")) {
                 this.levelTitle = "Legendary Farmer";
                 System.out.println("You are now a Legendary farmer!");
 
-                // update farmer level benefits
+                // Update farmer level benefits
                 this.bonusEarnings = 3;
                 this.seedDiscount = 3;
                 this.waterBonusInc = 2;

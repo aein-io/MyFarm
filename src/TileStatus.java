@@ -1,6 +1,6 @@
 /**
- * Class that represents the status of a tile. 
- * It contains the availability of the tile and the reason when it is not.
+ * This class contains the availability of the tile, and provides a reason if it is not.
+ * 
  * @version 1.0
  */
 public class TileStatus {
@@ -8,7 +8,7 @@ public class TileStatus {
     private boolean isAvailable;
 
     /**
-     * Constructor that instantiates the TileStatus object
+     * Constructor that instantiates the TileStatus object.
      */
     public TileStatus() {
         this.reason = null;
@@ -16,7 +16,8 @@ public class TileStatus {
     }
     
     /**
-     * Sets the availability of the tile and the reason when it is not 
+     * Sets the availability of the tile and the reason when it is not.
+     * 
      * @param reason the reason why the tile is not available
      * @param isAvailable checker if the tile is available
      */
@@ -43,22 +44,23 @@ public class TileStatus {
     }
 
     /**
-     * Sets the tile's inavailability due to its proximity to a tree
+     * Sets the tile's inavailability due to its proximity to a tree.
      */
     public void nearTree() {
         setStatus("The tile is near a tree", false);
     }
 
     /**
-     * Sets the tile's inavailability because it is occupied by a crop
+     * Sets the tile's inavailability because it is occupied by a crop.
      */
     public void hasCrop() {
         setStatus("The tile has a crop", false);
     }
 
     /**
-     * Checks if the tile has a crop
-     * @returns true if the tile has a crop, and false otherwise
+     * Checks if the tile has a crop.
+     * 
+     * @returns true if the tile has a crop, false otherwise
      */
     public boolean checkHasCrop(){
         if(this.reason != null){
@@ -70,16 +72,18 @@ public class TileStatus {
     }
 
     /**
-     * Gets the reason why the tile is not available
-     * @return reason string that contains the reason for the tiles inavailability
+     * Gets the reason why the tile is not available.
+     * 
+     * @return string that contains the reason for the tiles inavailability
      */
     public String getReason() {
         return this.reason;
     }
 
     /**
-     * Gets the availability of the tile
-     * @return isAvailable checker if the tile is available
+     * Gets the availability of the tile.
+     * 
+     * @return checker if the tile is available
      */
     public boolean getAvailability() {
         return this.isAvailable;

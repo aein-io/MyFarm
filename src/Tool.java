@@ -1,5 +1,6 @@
 /**
- * This class is used to create a generic tool object
+ * This class creates a generic tool object.
+ * 
  * @version 1.0
  */
 public class Tool {
@@ -7,9 +8,10 @@ public class Tool {
     private double expGain;
 
     /**
-     * This is the constructor for the Tool class
-     * @param cost The cost of the tool
-     * @param expGain The experience gained from using the tool
+     * Constructor that initializes a Tool.
+     * 
+     * @param cost the cost of using the tool
+     * @param expGain the experience gained from using the tool
      */
     public Tool(double cost, double expGain) {
         this.cost = cost;
@@ -17,7 +19,8 @@ public class Tool {
     }
 
     /**
-     * Gets the amount of experience gained from using the tool
+     * Gets the amount of experience gained from using the tool.
+     * 
      * @return expGain
      */
     public double getExpGain() {
@@ -25,7 +28,8 @@ public class Tool {
     }
 
     /**
-     * Gets the cost of the tool
+     * Gets the cost of the tool.
+     * 
      * @return cost
      */
     public double getCost() {
@@ -33,12 +37,13 @@ public class Tool {
     }
 
     /**
-     * Method to use the tool
-     * @param farmer The farmer using the tool
+     * Method to use the tool.
+     * 
+     * @param farmer the farmer using the tool
      * @returns a new ToolStatus object
      */
     public ToolStatus use(Farmer farmer) {
-        // utility class meant to be overriden
+        // Utility class meant to be overriden
         return new ToolStatus();
     }
 }

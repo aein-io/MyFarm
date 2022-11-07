@@ -1,3 +1,8 @@
+/**
+ * This class represents a crop in the game.
+ * 
+ * @version 1.0
+ */
 public class Crop {
     private String name;
     private String type;

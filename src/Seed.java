@@ -1,5 +1,6 @@
 /**
- * This class represents a seed in the game. It contains the name and cost of the seed,
+ * This class represents a seed in the game. It contains the name and cost of the seed.
+ * 
  * @version 1.0
  */
 public class Seed {
@@ -7,7 +8,8 @@ public class Seed {
     private double cost;
 
     /**
-     * Constructor that creates a seed object depending on the seed's name
+     * Constructor that creates a seed object depending on the seed's name.
+     * 
      * @param name the name of the seed
      */
     public Seed(String name){
@@ -24,7 +26,8 @@ public class Seed {
     }
 
     /**
-     * Gets the name of the seed
+     * Gets the name of the seed.
+     * 
      * @return name
      */
     public String getName() {
@@ -32,7 +35,8 @@ public class Seed {
     }
 
     /**
-     * Gets the cost of the seed
+     * Gets the cost of the seed.
+     * 
      * @return cost
      */
     public double getCost() {

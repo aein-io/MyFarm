@@ -1,5 +1,6 @@
 /**
- * This class represents a single tile on the farm
+ * This class represents a single tile on the farm.
+ * 
  * @version 1.0
  */
 public class Tile {
@@ -9,7 +10,7 @@ public class Tile {
     private TileStatus availability;
 
     /**
-     * Constructor that initializes the tile
+     * Constructor that initializes the tile.
      */
     public Tile() {
         this.crop = null;
@@ -18,73 +19,82 @@ public class Tile {
     }
 
     /**
-     * Gets the crop on the tile
-     * @return crop the crop on the tile
+     * Gets the crop on the tile.
+     * 
+     * @return the crop on the tile
      */
     public Crop getCrop() {
         return this.crop;
     }
 
     /**
-     * Gets the status of the tile
-     * @return availability the TileStatus of the tile
+     * Gets the status of the tile.
+     * 
+     * @return availability of the tile from TileStatus
      */
     public TileStatus getTileStatus() {
         return this.availability;
     }
 
     /**
-     * Makes the tile available 
+     * Makes the tile available by initializing a new and default TileStatus.
      */
     public void makeAvailable() {
         this.availability = new TileStatus();
     }
 
     /**
-     * @return The tile's availability status
+     * Checks if tile is available.
+     * 
+     * @return true if tile is available, false otherwise
      */
     public boolean isAvailable(){
         return this.availability.getAvailability();
     }
     
     /**
-     * @return Whether the tile is currently plowed or not
+     * Checks if tile is plowed.
+     * 
+     * @return true if tile is plowed, false otherwise
      */
     public boolean isPlowed() {
         return this.isPlowed;
     }
 
     /**
-     * @param plow The plow status to change to
+     * Sets the status of the tile as plowed.
+     * 
+     * @param plow true if tile is plowed, false otherwise
      */
     public void setPlowed(boolean plow){
         this.isPlowed = plow;
     }
 
     /**
-     * Changes the crop currently planted on the tile
-     * @param crop The crop to set
+     * Changes the crop currently planted on the tile.
+     * 
+     * @param crop the crop that is set on a tile
      */
     public void setCrop(Crop crop) {
         this.crop = crop;
     }
 
     /**
-     * Updates all necessary attributes on the tile. Called when the day has ended and crops must get older.
+     * Updates all necessary attributes on the tile. Called when the day has ended and crops must grow.
      */
     public void updateTile() {
 
-        // return if the tile does not have a crop
+        // Return if the tile does not have a crop
         if(this.crop == null)
             return;
 
-        // update crop status
+        // Update crop status
         this.crop.updatePlantedSince();
 
-        // check if crop harvest time
+        // Check if it is crop's harvest time
         boolean harvestDay = this.crop.plantedWhen() == this.crop.getHarvestTime() ? true : false;
 
-        // check if needs are met
+        // Check if needs are met
         boolean waterNeedsMet = this.crop.getTimesWatered() >= this.crop.getWaterNeeds() ? true : false;
         boolean fertilizerNeedsMet = this.crop.getTimesFertilized() >= this.crop.getFertilizerNeeds() ? true : false;
 
@@ -104,11 +114,12 @@ public class Tile {
 
     /**
      * Creates and returns a visual representation of a tile and its current state.
-     * @return A string of symbols representing the tile.
+     * 
+     * @return a string of symbols representing the tile's state
      */
     public String display() {
 
-        String display = "❇️";
+        String display = "🟩";
 
         if(this.isPlowed) {
             display = "🟫";
@@ -116,12 +127,12 @@ public class Tile {
             if(this.availability.checkHasCrop()){
                 display = "🌱";
                 if(this.getCrop().isHarvestable())
-                    display = "🌾";
+                    display = "🌾\n\nYour crop is ready for harvest!";
             }
         }
 
         if(this.availability.isWithered())
-            display = "🍃";
+            display = "💀\n\nYour crop withered overnight.";
 
         return display;
     }
