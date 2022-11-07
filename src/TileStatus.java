@@ -26,20 +26,28 @@ public class TileStatus {
         this.isAvailable = isAvailable;
     }
 
+    /**
+     * Sets the tile's inavailability because it is occupied by a rock.
+     */
     public void hasRock(){
         setStatus("\nThe tile has a rock.", false);
     }
 
+    /**
+     * Sets the tile's inavailability because it is occupied by a withered crop.
+     */
     public void hasWithered(){
         setStatus("\nThe tile has a withered crop.", false);
     }
 
+    /**
+     * Sets crop as withered.
+     */
     public boolean isWithered(){
         if(this.reason != null){
             if(this.reason.equals("\nThe tile has a withered crop."))
             return true;
         }
-        
         return false;
     }
 
