@@ -110,7 +110,7 @@ public class Driver {
                         if (farmer.harvestCrop()) {
 
                         } else {
-                            System.out.println("There is nothing to harvest.");
+                        
                         }
                         break;
                     case 6:
